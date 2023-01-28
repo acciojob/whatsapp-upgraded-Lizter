@@ -194,30 +194,30 @@ public class WhatsappRepository {
     }
 
 
-    public String findMessage(Date start, Date end, int K) throws Exception{
-
-        // Msg between start and end ; exclude --> start and end
-        // If msg btw start & end < ; Exception --> K is greater than the number of messages
-        List<Message> messages = new ArrayList<>();
-        for(Group group: groupMessageMap.keySet()){
-            messages.addAll(groupMessageMap.get(group));
-        }
-
-
-        List<Message> filteredMessages = new ArrayList<>();
-        for(Message message: messages){
-            if(message.getTimestamp().after(start) && message.getTimestamp().before(end)){
-                filteredMessages.add(message);
-            }
-        }
-        if(filteredMessages.size() < K){
-            throw new Exception("K is greater than the number of messages");
-        }
-        Collections.sort(filteredMessages, new Comparator<Message>(){
-            public int compare(Message m1, Message m2){
-                return m2.getTimestamp().compareTo(m1.getTimestamp());
-            }
-        });
-        return filteredMessages.get(K-1).getContent();
-    }
+//    public String findMessage(Date start, Date end, int K) throws Exception{
+//
+//        // Msg between start and end ; exclude --> start and end
+//        // If msg btw start & end < ; Exception --> K is greater than the number of messages
+//        List<Message> messages = new ArrayList<>();
+//        for(Group group: groupMessageMap.keySet()){
+//            messages.addAll(groupMessageMap.get(group));
+//        }
+//
+//
+//        List<Message> filteredMessages = new ArrayList<>();
+//        for(Message message: messages){
+//            if(message.getTimestamp().after(start) && message.getTimestamp().before(end)){
+//                filteredMessages.add(message);
+//            }
+//        }
+//        if(filteredMessages.size() < K){
+//            throw new Exception("K is greater than the number of messages");
+//        }
+//        Collections.sort(filteredMessages, new Comparator<Message>(){
+//            public int compare(Message m1, Message m2){
+//                return m2.getTimestamp().compareTo(m1.getTimestamp());
+//            }
+//        });
+//        return filteredMessages.get(K-1).getContent();
+//    }
 }
